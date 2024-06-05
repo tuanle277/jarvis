@@ -1,0 +1,14 @@
+[project]
+name = "jarvis"
+version = "0.1.0"
+requires-python = ">=3.9"
+dependencies = [
+    "Flask", "SpeechRecognition", "pyaudio", "gtts", "openai", "transformers",
+    "torch", "simpleaudio", "vertexai", "google-cloud-aiplatform"
+]
+
+[tool.setuptools.packages.find]
+exclude = ["assets*", "benchmark*", "playground*", "scripts*", "tests*", "data*"]
+
+[tool.wheel]
+exclude = ["assets*", "benchmark*", "playground*", "scripts*", "tests*", "data*"]

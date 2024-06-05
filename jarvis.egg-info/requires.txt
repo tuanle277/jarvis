@@ -1,0 +1,8 @@
+flask
+SpeechRecognition
+pyaudio
+gtts
+openai
+transformers
+torch
+simpleaudio
