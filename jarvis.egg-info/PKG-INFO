@@ -2,7 +2,7 @@ Metadata-Version: 2.1
 Name: jarvis
 Version: 0.1.0
 Requires-Python: >=3.9
-Requires-Dist: flask
+Requires-Dist: Flask
 Requires-Dist: SpeechRecognition
 Requires-Dist: pyaudio
 Requires-Dist: gtts
@@ -10,3 +10,8 @@ Requires-Dist: openai
 Requires-Dist: transformers
 Requires-Dist: torch
 Requires-Dist: simpleaudio
+Requires-Dist: vertexai
+Requires-Dist: google-cloud-aiplatform
+Requires-Dist: selenium
+Requires-Dist: webdriver_manager
+Requires-Dist: google

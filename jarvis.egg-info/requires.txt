@@ -1,4 +1,4 @@
-flask
+Flask
 SpeechRecognition
 pyaudio
 gtts
@@ -6,3 +6,8 @@ openai
 transformers
 torch
 simpleaudio
+vertexai
+google-cloud-aiplatform
+selenium
+webdriver_manager
+google
