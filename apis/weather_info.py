@@ -1,7 +1,7 @@
 import requests
 
 def get_weather(city):
-    api_key = "a9e5bb875d144939a8e230605240606"
+    api_key = ""
     url = f"http://api.weatherapi.com/v1/current.json?key={api_key}&q={city}&aqi=no"
     response = requests.get(url)
     if response.status_code == 200:
