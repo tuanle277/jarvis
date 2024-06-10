@@ -8,7 +8,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 
 
-class WebScraping:
+class WebScrapingModule:
     def __init__(self) -> None:
         self.driver = self.setup_driver()
 

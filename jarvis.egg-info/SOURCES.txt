@@ -2,6 +2,7 @@ README.md
 pyproject.toml
 apis/__init__.py
 apis/currency_info.py
+apis/load_api.py
 apis/news_info.py
 apis/stock_info.py
 apis/weather_info.py
@@ -10,4 +11,5 @@ jarvis.egg-info/SOURCES.txt
 jarvis.egg-info/dependency_links.txt
 jarvis.egg-info/requires.txt
 jarvis.egg-info/top_level.txt
+modules/applescript.py
 modules/web_scraping.py

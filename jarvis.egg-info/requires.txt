@@ -5,9 +5,11 @@ gtts
 openai
 transformers
 torch
-simpleaudio
 vertexai
 google-cloud-aiplatform
 selenium
 webdriver_manager
 google
+python-dotenv
+tensorflow
+ttkthemes

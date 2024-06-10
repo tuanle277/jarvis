@@ -9,9 +9,11 @@ Requires-Dist: gtts
 Requires-Dist: openai
 Requires-Dist: transformers
 Requires-Dist: torch
-Requires-Dist: simpleaudio
 Requires-Dist: vertexai
 Requires-Dist: google-cloud-aiplatform
 Requires-Dist: selenium
 Requires-Dist: webdriver_manager
 Requires-Dist: google
+Requires-Dist: python-dotenv
+Requires-Dist: tensorflow
+Requires-Dist: ttkthemes

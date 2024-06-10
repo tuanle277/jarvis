@@ -2,10 +2,11 @@ from flask import Flask, request, jsonify
 from voice_recognition import recognize_speech
 from text_to_speech import speak
 from nlp import get_response
-from weather_info import get_weather
-from news_info import get_news
-from stock_info import get_stock_price
-from currency_info import get_exchange_rate
+
+from apis.weather_info import get_weather
+from apis.news_info import get_news
+from apis.stock_info import get_stock_price
+from apis.currency_info import get_exchange_rate
 
 app = Flask(__name__)
 

@@ -4,8 +4,9 @@ version = "0.1.0"
 requires-python = ">=3.9"
 dependencies = [
     "Flask", "SpeechRecognition", "pyaudio", "gtts", "openai", "transformers",
-    "torch", "simpleaudio", "vertexai", "google-cloud-aiplatform", "selenium",
-    "webdriver_manager", "google"
+    "torch", "vertexai", "google-cloud-aiplatform", "selenium",
+    "webdriver_manager", "google", "python-dotenv", "tensorflow", "ttkthemes",
+    "pyttsx3"
 ]
 
 [tool.setuptools.packages.find]
