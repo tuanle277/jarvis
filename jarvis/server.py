@@ -1,7 +1,7 @@
 from flask import Flask, request, jsonify
-from voice_recognition import recognize_speech
-from text_to_speech import speak
-from nlp import get_response
+from modules.voice_recognition import recognize_speech
+from modules.talk import speak
+from modules.chatbot import get_response
 
 from apis.weather_info import get_weather
 from apis.news_info import get_news

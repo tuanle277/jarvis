@@ -1,7 +1,4 @@
 import subprocess
-import speech_recognition as sr
-import threading
-import time
 
 class AppleScriptModule:
     @staticmethod
@@ -108,55 +105,3 @@ class AppleScriptModule:
         """Closes all Finder windows."""
         script = 'tell application "Finder" to close every window'
         return AppleScriptModule.execute_applescript(script)
-
-    def listen_for_wake_word(self, wake_word, recognizer, microphone, callback):
-        """Continuously listens for the wake word and calls the callback function when detected."""
-        while True:
-            print("Say the wake word...")
-            with microphone as source:
-                recognizer.adjust_for_ambient_noise(source)
-                audio = recognizer.listen(source)
-
-            try:
-                speech_text = recognizer.recognize_google(audio).lower()
-                if wake_word in speech_text:
-                    print("Wake word detected!")
-                    callback()
-            except sr.UnknownValueError:
-                print("Sorry, I could not understand the audio.")
-            except sr.RequestError:
-                print("Sorry, my speech service is down.")
-
-            time.sleep(1)  # Pause for a short moment before listening again
-
-    def start_listening(self, wake_word, callback):
-        """Starts the background thread to listen for the wake word."""
-        recognizer = sr.Recognizer()
-        microphone = sr.Microphone()
-        listen_thread = threading.Thread(target=self.listen_for_wake_word, args=(wake_word, recognizer, microphone, callback))
-        listen_thread.daemon = True
-        listen_thread.start()
-        print("Listening for wake word...")
-
-    @staticmethod
-    def run_main_py():
-        """Runs the main.py script in the same folder."""
-        try:
-            subprocess.run(['python3', 'main.py'], check=True)
-        except subprocess.CalledProcessError as e:
-            print(f"Error running main.py: {e}")
-
-# Example usage
-def on_wake_word_detected():
-    print("Wake word callback executed")
-    AppleScriptModule.run_main_py()
-
-if __name__ == "__main__":
-    asm = AppleScriptModule()
-    asm.start_listening("hey jarvis", on_wake_word_detected)
-    # Keep the main thread alive
-    try:
-        while True:
-            time.sleep(0.1)
-    except KeyboardInterrupt:
-        print("Shutting down JARVIS.")
