@@ -1,7 +1,12 @@
 import platform
+import torch
+import numpy as np
 
 from apple_command import AppleScriptModule
 from windows_command import PowerShellModule 
+
+from transformers import AutoModelForSequenceClassification, AutoTokenizer, pipeline
+
 
 class ScriptModule:
     def __init__(self):
@@ -32,12 +37,40 @@ class ScriptModule:
             'close all finder windows': self.module.close_all_finder_windows,
         }
 
-    def get_command(self, command):
-        """Maps a command to the appropriate method."""
-        for key in self.command_mapping.keys():
-            if key in command:
-                return self.command_mapping[key]
-        raise Exception(f"Command '{command}' not recognized.")
+        self.tokenizer = AutoTokenizer.from_pretrained("bert-base-uncased")
+        self.model = AutoModelForSequenceClassification.from_pretrained("bert-base-uncased")
+        self.nlp = pipeline('feature-extraction', model=self.model, tokenizer=self.tokenizer)
+
+    def get_command(self, spoken_command):
+        """Maps a spoken command to the appropriate method."""
+        spoken_embedding = self._embed_text(spoken_command)
+        best_match = None
+        best_similarity = float('-inf')
+        
+        for command in self.command_mapping.keys():
+            command_embedding = self._embed_text(command)
+            similarity = self._cosine_similarity(spoken_embedding, command_embedding)
+            if similarity > best_similarity:
+                best_similarity = similarity
+                best_match = command
+        
+        if best_match:
+            return self.command_mapping[best_match]
+        else:
+            raise Exception(f"No suitable command found for '{spoken_command}'")
+
+    def _embed_text(self, text):
+        """Embeds the text using the NLP model."""
+        with torch.no_grad():
+            embeddings = self.nlp(text)
+        return np.mean(embeddings[0], axis=0)
+
+    def _cosine_similarity(self, emb1, emb2):
+        """Calculates the cosine similarity between two embeddings."""
+        dot_product = np.dot(emb1, emb2)
+        norm_emb1 = np.linalg.norm(emb1)
+        norm_emb2 = np.linalg.norm(emb2)
+        return dot_product / (norm_emb1 * norm_emb2)
 
     def execute_script(self, script):
         return self.module.execute_script(script)
