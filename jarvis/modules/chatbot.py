@@ -1,5 +1,5 @@
 import openai
-from transformers import AutoModelForCausalLM, AutoTokenizer, Conversation
+from transformers import AutoModelForCausalLM, AutoTokenizer, Conversation, pipeline
 import vertexai
 from vertexai.generative_models import GenerativeModel, Image, Part
 
@@ -39,6 +39,7 @@ class DiabloChat:
         self.tokenizer = AutoTokenizer.from_pretrained(model_name)
         self.model = AutoModelForCausalLM.from_pretrained(model_name)
         self.conversation_history = []
+        self.chatbot = pipeline('conversational', model='microsoft/DialoGPT-medium')
 
     def get_response(self, prompt: str) -> str:
         conversation = Conversation(prompt)
@@ -47,7 +48,13 @@ class DiabloChat:
         outputs = self.model.generate(**inputs, max_length=150)
         response = self.tokenizer.decode(outputs[0], skip_special_tokens=True)
         return response
-
+    
+    def response(self, prompt):
+        """Generates a response using DialoGPT for conversational responses."""
+        conversation = Conversation(prompt)
+        self.conversation_history.append(conversation)
+        response = self.chatbot(self.conversation_history)
+        return response[-1]["content"]
 
 class GeminiChat:
     def __init__(self, project_id: str, region: str) -> None:

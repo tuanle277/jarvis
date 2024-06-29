@@ -6,7 +6,7 @@ dependencies = [
     "Flask", "SpeechRecognition", "pyaudio", "gtts", "openai", "transformers",
     "torch", "vertexai", "google-cloud-aiplatform", "selenium",
     "webdriver_manager", "google", "python-dotenv", "tensorflow", "ttkthemes",
-    "pyttsx3"
+    "pyttsx3", "pywin32", pywin64"
 ]
 
 [tool.setuptools.packages.find]

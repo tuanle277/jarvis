@@ -2,8 +2,8 @@ import platform
 import torch
 import numpy as np
 
-from apple_command import AppleScriptModule
-from windows_command import PowerShellModule 
+from .apple_command import AppleScriptModule
+from .windows_command import PowerShellModule 
 
 from transformers import AutoModelForSequenceClassification, AutoTokenizer, pipeline
 

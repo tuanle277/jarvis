@@ -1,0 +1,122 @@
+{
+    "GetWeather": {
+        "description": "Get the weather information.",
+        "windows_command": "echo Weather information is not implemented.",
+        "mac_command": "echo Weather information is not implemented."
+    },
+    "SetAlarm": {
+        "description": "Set an alarm at a specified time.",
+        "windows_command": "powershell New-ScheduledTaskTrigger -At '7:00AM' -Once -RepetitionInterval (New-TimeSpan -Minutes 1) | Register-ScheduledTask -TaskName 'Alarm' -User 'SYSTEM'",
+        "mac_command": "osascript -e 'display dialog \"Set alarm is not implemented.\"'"
+    },
+    "PlayMusic": {
+        "description": "Play music using the default media player.",
+        "windows_command": "start wmplayer",
+        "mac_command": "osascript -e 'tell application \"Music\" to play'"
+    },
+    "GetTime": {
+        "description": "Get the current system time.",
+        "windows_command": "echo %time%",
+        "mac_command": "osascript -e 'get (current date) as string'"
+    },
+    "TellJoke": {
+        "description": "Tell a joke.",
+        "windows_command": "echo Why don't scientists trust atoms? Because they make up everything!",
+        "mac_command": "osascript -e 'display dialog \"Why don't scientists trust atoms? Because they make up everything!\"'"
+    },
+    "OpenNotepad": {
+        "description": "Open Notepad.",
+        "windows_command": "notepad",
+        "mac_command": "osascript -e 'tell application \"TextEdit\" to activate'"
+    },
+    "OpenCalculator": {
+        "description": "Open Calculator.",
+        "windows_command": "calc",
+        "mac_command": "osascript -e 'tell application \"Calculator\" to activate'"
+    },
+    "Shutdown": {
+        "description": "Shutdown the computer.",
+        "windows_command": "shutdown /s /t 1",
+        "mac_command": "osascript -e 'do shell script \"sudo shutdown -h now\" with administrator privileges'"
+    },
+    "Restart": {
+        "description": "Restart the computer.",
+        "windows_command": "shutdown /r /t 1",
+        "mac_command": "osascript -e 'do shell script \"sudo shutdown -r now\" with administrator privileges'"
+    },
+    "SetVolume": {
+        "description": "Set the system volume to a specified level.",
+        "windows_command": "powershell -Command \"(New-Object -ComObject WScript.Shell).SendKeys([char]175)\"",
+        "mac_command": "osascript -e 'set volume output volume 50'"
+    },
+    "MuteVolume": {
+        "description": "Mute the system volume.",
+        "windows_command": "nircmd.exe mutesysvolume 1",
+        "mac_command": "osascript -e 'set volume with output muted'"
+    },
+    "UnmuteVolume": {
+        "description": "Unmute the system volume.",
+        "windows_command": "nircmd.exe mutesysvolume 0",
+        "mac_command": "osascript -e 'set volume without output muted'"
+    },
+    "GetVolume": {
+        "description": "Get the current system volume.",
+        "windows_command": "powershell -Command \"((Get-WmiObject -Query 'Select * from Win32_SoundDevice').ConfigManagerErrorCode)\"",
+        "mac_command": "osascript -e 'output volume of (get volume settings)'"
+    },
+    "DisplayDialog": {
+        "description": "Display a dialog with a specified message.",
+        "windows_command": "msg * 'This is a message.'",
+        "mac_command": "osascript -e 'display dialog \"This is a message.\"'"
+    },
+    "DisplayNotification": {
+        "description": "Display a notification with a specified message and title.",
+        "windows_command": "powershell -Command \"[Windows.UI.Notifications.ToastNotificationManager, Windows.UI.Notifications, ContentType = WindowsRuntime] | Out-Null; $template = [Windows.UI.Notifications.ToastNotificationManager]::GetTemplateContent([Windows.UI.Notifications.ToastTemplateType]::ToastText02); $toastXml = [xml]$template.GetXml(); $toastXml.GetElementsByTagName('text')[0].AppendChild($toastXml.CreateTextNode('Title')) | Out-Null; $toastXml.GetElementsByTagName('text')[1].AppendChild($toastXml.CreateTextNode('This is a notification.')) | Out-Null; $toast = [Windows.UI.Notifications.ToastNotification]::new($toastXml); [Windows.UI.Notifications.ToastNotificationManager]::CreateToastNotifier('JARVIS').Show($toast);\"",
+        "mac_command": "osascript -e 'display notification \"This is a notification.\" with title \"Title\"'"
+    },
+    "CreateFolder": {
+        "description": "Create a new folder on the desktop with the specified name.",
+        "windows_command": "powershell -Command \"New-Item -Path $env:USERPROFILE\\Desktop -Name 'New Folder' -ItemType 'directory'\"",
+        "mac_command": "osascript -e 'tell application \"Finder\" to make new folder at desktop with properties {name:\"New Folder\"}'"
+    },
+    "MoveFile": {
+        "description": "Move a file from source to destination.",
+        "windows_command": "powershell -Command \"Move-Item -Path 'C:\\source\\file.txt' -Destination 'C:\\destination\\'\"",
+        "mac_command": "osascript -e 'tell application \"Finder\" to move file \"POSIX path of source/file.txt\" to folder \"POSIX path of destination/\"'"
+    },
+    "DeleteFile": {
+        "description": "Delete a file at the specified path.",
+        "windows_command": "powershell -Command \"Remove-Item -Path 'C:\\path\\file.txt'\"",
+        "mac_command": "osascript -e 'tell application \"Finder\" to delete file \"POSIX path of path/file.txt\"'"
+    },
+    "GetCurrentTime": {
+        "description": "Get the current date and time.",
+        "windows_command": "powershell -Command \"Get-Date -Format 'yyyy-MM-dd HH:mm:ss'\"",
+        "mac_command": "osascript -e 'get (current date) as string'"
+    },
+    "GetBatteryStatus": {
+        "description": "Get the current battery status.",
+        "windows_command": "powershell -Command \"Get-WmiObject -Class Win32_Battery | Select-Object -ExpandProperty EstimatedChargeRemaining\"",
+        "mac_command": "osascript -e 'do shell script \"pmset -g batt | grep -Eo '\\d+%'\"'"
+    },
+    "GetNetworkInfo": {
+        "description": "Get the current network information.",
+        "windows_command": "powershell -Command \"Get-NetIPAddress -AddressFamily IPv4\"",
+        "mac_command": "osascript -e 'do shell script \"ifconfig en0\"'"
+    },
+    "OpenFinderWindow": {
+        "description": "Open a new Finder window.",
+        "windows_command": "powershell -Command \"explorer.exe\"",
+        "mac_command": "osascript -e 'tell application \"Finder\" to make new Finder window'"
+    },
+    "GetFrontmostFinderPath": {
+        "description": "Get the path of the frontmost Finder window.",
+        "windows_command": "powershell -Command \"explorer.exe\"",
+        "mac_command": "osascript -e 'tell application \"Finder\" to get POSIX path of (target of front Finder window as alias)'"
+    },
+    "CloseAllFinderWindows": {
+        "description": "Close all Finder windows.",
+        "windows_command": "powershell -Command \"taskkill /IM explorer.exe /F\"",
+        "mac_command": "osascript -e 'tell application \"Finder\" to close every window'"
+    }
+}

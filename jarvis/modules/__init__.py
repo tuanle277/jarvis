@@ -1,4 +1,4 @@
 from .chatbot import ChatBotModule
-from .applescript import AppleScriptModule 
+from .system_commands.commands import ScriptModule 
 from .web_scraping import WebScrapingModule
 from .talk import TalkModule

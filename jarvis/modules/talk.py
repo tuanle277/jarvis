@@ -121,8 +121,8 @@ class TalkModule:
 if __name__ == "__main__":
     speak_module = TalkModule()
     speak_module.speak("Hello, this is a test.")
-    # speak_module.record_audio("test_recording.wav")
-    # speak_module.play_sound("test_recording.wav")
+    speak_module.record_audio("test_recording.wav")
+    speak_module.audio_to_text("test_recording.wav")
 
 # import boto3
 # import os
