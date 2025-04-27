@@ -3,10 +3,10 @@ name = "jarvis"
 version = "0.1.0"
 requires-python = ">=3.9"
 dependencies = [
-    "Flask", "SpeechRecognition", "pyaudio", "gtts", "openai", "transformers",
+    "Flask", "SpeechRecognition", "pyaudio", "gtts", "transformers",
     "torch", "vertexai", "google-cloud-aiplatform", "selenium",
     "webdriver_manager", "google", "python-dotenv", "tensorflow", "ttkthemes",
-    "pyttsx3", "pywin32", pywin64"
+    "PyQt5"
 ]
 
 [tool.setuptools.packages.find]

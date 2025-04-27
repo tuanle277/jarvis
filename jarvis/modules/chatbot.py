@@ -1,5 +1,5 @@
 import openai
-from transformers import AutoModelForCausalLM, AutoTokenizer, Conversation, pipeline
+from transformers import AutoModelForCausalLM, AutoTokenizer, pipeline
 import vertexai
 from vertexai.generative_models import GenerativeModel, Image, Part
 
@@ -42,7 +42,7 @@ class DiabloChat:
         self.chatbot = pipeline('conversational', model='microsoft/DialoGPT-medium')
 
     def get_response(self, prompt: str) -> str:
-        conversation = Conversation(prompt)
+        conversation = self.chatbot(prompt)
         self.conversation_history.append(conversation)
         inputs = self.tokenizer(prompt, return_tensors="pt")
         outputs = self.model.generate(**inputs, max_length=150)
